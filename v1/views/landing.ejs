@@ -1,0 +1,45 @@
+<%- include ("partials/header") %>
+
+		<div class="langding-header">
+			<h1>
+				Welcome to TargetShopping
+			</h1>
+		</div>
+
+		<!-- <div class="container">
+			<header class="jumbotron">
+				<div class="container text-center">
+					<h1> Welcome To TargetShopping</h1>
+				</div>
+			</header>
+		</div> -->
+		<div class="container">
+			<!-- the style defined below help make each grid adapts -->
+			<div class="row text-center" style="display:flex; flex-wrap:wrap;">
+				<div class='col-lg-12'>
+					<h3>
+						Best Products this Week
+					</h3>
+					<% products.forEach(function(product) { %>
+						<!-- each row have 3 products displayed -->
+						<!-- when the window shrink, each row has 2 products displayed -->
+						<div class="col-md-3 col-sm-6">
+							<!-- bootstrap class: thumbnail -->
+							<!-- help make a little card -->
+							<div class="thumbnail">
+								<img src="<%=product.img%>">
+								
+								<div class="caption">
+									<h4><%=product.name  %></h4>
+									<h4><%=product.price %></h4>
+								</div>	
+							</div>
+						</div>
+					<% }) %>
+				</div>	
+			</div>
+		</div>
+	</body>	
+</html>
+
+
