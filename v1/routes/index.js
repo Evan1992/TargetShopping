@@ -68,9 +68,14 @@ router.post("/register", function(req, res){
 })
 
 // handle myAccount
-router.get("/myAccount", function(req, res){
-	res.render("myAccount")
-})
-
+// router.get("/user/:id", function(req, res){
+// 	User.findById(req.params.id, function(err, foundUser){
+// 		if(err){
+// 			res.redirect("/")
+// 		}else{
+// 			res.render("user",{user:foundUser});
+// 		}
+// 	})
+// })
 
 module.exports = router;

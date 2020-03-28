@@ -28,11 +28,19 @@
 							<!-- help make a little card -->
 							<div class="thumbnail">
 								<img src="<%=product.img%>">
-								
 								<div class="caption">
 									<h4><%=product.name  %></h4>
 									<h4><%=product.price %></h4>
-								</div>	
+								</div>
+								<% if(currentUser){ %>
+									<form action='/user/<%= currentUser._id%>' method='POST'>
+										<input type='hidden' value = '<%=product._id%>' name='productInCart'>
+										<!-- <button><a href="/">Add to Cart</a></button> -->
+										<button>Add to Cart</button>
+									</form>
+								<% }else{%>
+									<button><a href="/login">Add to Cart</a></button>
+								<%}%>
 							</div>
 						</div>
 					<% }) %>

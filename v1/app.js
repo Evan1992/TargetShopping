@@ -54,8 +54,11 @@ app.use(function(req, res, next){
 //requiring routes
 //=======================
 var indexRoutes = require("./routes/index");
-// 
+var userRoutes  = require("./routes/user");
+var cartRoutes  = require("./routes/cart");
 app.use(indexRoutes);
+app.use(userRoutes);
+app.use(cartRoutes);
 
 // connect to server
 app.listen(3000, function(){

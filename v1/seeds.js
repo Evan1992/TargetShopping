@@ -32,7 +32,7 @@ function seedDB(){
 		if(err){
 			console.log(err);
 		}
-		console.log("removed products!")
+		console.log("removed all products!")
 		// add products to database
 		data.forEach(function(seed){
 			Product.create(seed, function(err, product){

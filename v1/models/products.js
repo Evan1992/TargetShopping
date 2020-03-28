@@ -11,5 +11,4 @@ var ProductSchema = new mongoose.Schema({
 
 // add in some methods to the user
 // ProductSchema.plugin(passportLocalMongoose);
-
 module.exports = mongoose.model("Product", ProductSchema)
