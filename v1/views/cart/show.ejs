@@ -2,7 +2,9 @@
 
 <h1>Cart Show Page</h1>
 	<% foundUser.cart.forEach(function(product){ %>
-		<h4><%=product.name%></h4>	
+		<h4><%= product %></h4>
+		<h4><%=product.name%></h4>
+		<img src="<%=product.img%>">
 	<%})%>
 	</body>	
 </html>

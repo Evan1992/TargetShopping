@@ -4,7 +4,7 @@ var express		= require("express"),
 	Product		= require("../models/products"),
 	middleware	= require("../middleware/index")
 
-// add products to user
+// add products to user.cart
 router.post("/user/:id", function(req, res){
 	User.findById(req.params.id, function(err, foundUser){
 		if(err){

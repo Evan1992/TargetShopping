@@ -32,6 +32,7 @@
 									<h4><%=product.name  %></h4>
 									<h4><%=product.price %></h4>
 								</div>
+								<!-- if user logged in -->
 								<% if(currentUser){ %>
 									<form action='/user/<%= currentUser._id%>' method='POST'>
 										<input type='hidden' value = '<%=product._id%>' name='productInCart'>
@@ -39,6 +40,7 @@
 										<button>Add to Cart</button>
 									</form>
 								<% }else{%>
+									<!-- if user not logged in -->
 									<button><a href="/login">Add to Cart</a></button>
 								<%}%>
 							</div>

@@ -1,6 +1,5 @@
 var express 	= require("express"),
 	router		= express.Router(),
-	cart		= require("../models/cart"),
 	User		= require("../models/users"),
 	middleware  = require("../middleware/index")
 
@@ -10,8 +9,9 @@ router.get("/cart", function(req, res){
 })
 
 // show router
+// middleware.isLoggedIn to make sure the user is logged in
 router.get("/cart/:id", middleware.isLoggedIn, function(req, res){
-	User.findOne({username:"Wu"}).populate("Product").exec(function(err, foundUser){
+	User.findOne({username:"Wu"}).populate("cart").exec(function(err, foundUser){
 		if(err){
 			console.log(err);
 		}else{
@@ -20,6 +20,15 @@ router.get("/cart/:id", middleware.isLoggedIn, function(req, res){
 		}
 	})
 })
+
+// Story.
+//   findOne({ title: 'Casino Royale' }).
+//   populate('author').
+//   exec(function (err, story) {
+//     if (err) return handleError(err);
+//     console.log('The author is %s', story.author.name);
+//     // prints "The author is Ian Fleming"
+//   });
 
 // handle myAccount update router
 // router.get("/user/:id/edit", function(req, res){
