@@ -18,8 +18,24 @@
 			<div class="row text-center" style="display:flex; flex-wrap:wrap;">
 				<div class='col-lg-12'>
 					<h3>
-						Best Products this Week
+						Add your product link here
 					</h3>
+					<% if(currentUser){ %>
+						<!-- if user has logged in -->
+						<form action="/addlink" method="POST">
+							<input type="text" name="link" value="" name='productInCart' placeholder="Product Link">
+							<button>Add</button>
+						</form>
+					
+					<% }else{%>
+						<!-- if user not logged in -->
+						<form action="/" method="POST">
+							<input type="text" name="Link" placeholder="Product Link">
+							<button><a href="/login">Add</a></button>
+						</form>
+					<%}%>
+					
+					
 					<% products.forEach(function(product) { %>
 						<!-- each row have 3 products displayed -->
 						<!-- when the window shrink, each row has 2 products displayed -->
@@ -51,5 +67,4 @@
 		</div>
 	</body>	
 </html>
-
 

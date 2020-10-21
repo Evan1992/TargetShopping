@@ -67,6 +67,12 @@ router.post("/register", function(req, res){
 	res.redirect("/");
 })
 
+router.post("/addlink", function(req, res){
+	/* do not pass password to user, because we have to 
+	   hash the password instead of using it directly */
+	res.redirect("/");
+})
+
 // handle myAccount
 // router.get("/user/:id", function(req, res){
 // 	User.findById(req.params.id, function(err, foundUser){

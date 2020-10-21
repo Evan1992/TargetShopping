@@ -6,7 +6,8 @@ var passportLocalMongoose = require("passport-local-mongoose");
 var ProductSchema = new mongoose.Schema({
 	name:  String,
 	img:   String,
-	price: Number
+	price: Number,
+	link:  String
 });
 
 // add in some methods to the user
