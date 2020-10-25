@@ -11,10 +11,8 @@ class ExampleSpider(scrapy.Spider):
         quotes = response.xpath('//*[@class="quote"]')
         for quote in quotes:
             text = quote.xpath('.//*[@class="text"]/text()').extract_first()
-            author = quote.xpath('.//*[@itemprop="author"]/\
-            text()').extract_first()
-            tags = quote.xpath('.//*[@itemprop="keywords"]/\
-            @content').extract_first()
+            author = quote.xpath('.//*[@itemprop="author"]/text()').extract_first()
+            tags = quote.xpath('.//*[@itemprop="keywords"]/@content').extract_first()
             
             print(text.encode())
             #print(text, author, tags)
