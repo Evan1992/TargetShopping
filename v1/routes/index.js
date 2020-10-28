@@ -68,9 +68,17 @@ router.post("/register", function(req, res){
 })
 
 router.post("/addlink", function(req, res){
-	/* do not pass password to user, because we have to 
-	   hash the password instead of using it directly */
-	res.redirect("/");
+	var exec = require('child_process').exec;
+	var cmd = 'python crawler/crawler.py ' + req.body.link;
+	exec(cmd, function(err,stdout,stderr){
+		if (err){
+			console.log('Python error: '+stderr);
+		} else {
+			var dic = JSON.parse(stdout);
+			
+		}
+	});
+	// res.redirect("/");
 })
 
 // handle myAccount

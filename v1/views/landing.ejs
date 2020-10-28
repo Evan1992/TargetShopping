@@ -23,14 +23,14 @@
 					<% if(currentUser){ %>
 						<!-- if user has logged in -->
 						<form action="/addlink" method="POST">
-							<input type="text" name="link" value="" name='productInCart' placeholder="Product Link">
+							<input type="text" name="link" value="" placeholder="Product Link">
 							<button>Add</button>
 						</form>
 					
 					<% }else{%>
 						<!-- if user not logged in -->
 						<form action="/" method="POST">
-							<input type="text" name="Link" placeholder="Product Link">
+							<input type="text" name="link" placeholder="Product Link">
 							<button><a href="/login">Add</a></button>
 						</form>
 					<%}%>

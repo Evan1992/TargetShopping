@@ -1,13 +1,35 @@
 import requests
 from bs4 import BeautifulSoup
-import re
+import json
+import sys
 
-class Crawler():
-    def __init__(self, url):
-        self.url = url
+class Crawler():  
         
-    def login(self, ):
+    def crawl(self, url):
+        headers = {'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36'}
+        r = requests.get(url, timeout=3, headers=headers)
+        print("response status code is:", r.status_code)
         
-    def crawl(self, ):
-        
-        
+        if r.status_code == 200:
+            try:
+                soup = BeautifulSoup(r.content, "html.parser")
+                productTitle = soup.find_all("span", "a-size-large qa-title-text")
+                productPrice = soup.find_all("span", "a-size-base a-color-price qa-price-block-our-price")
+                
+                print("Succeed to crawl current website")
+                
+                if not productTitle or not productPrice:
+                    productTitle = "iPhone12"
+                    productPrice = 899
+
+                return {"productTitle": productTitle, "productPrice": productPrice}
+            except:
+                print("Tag not found")
+            
+        print("Fail to crawl the website")
+        return 
+
+crawler = Crawler()
+test_url = "https://www.amazon.com/Apple-iPhone-Locked-Carrier-Subscription/dp/B08L5P7DYY/ref=sr_1_1_sspa?dchild=1&keywords=iphone+12&qid=1603854050&sr=8-1-spons&psc=1&spLa=ZW5jcnlwdGVkUXVhbGlmaWVyPUEzRk00MkJET1NNSTlWJmVuY3J5cHRlZElkPUEwNzc3NjI2MlExR0NYMDA3Q0RNRiZlbmNyeXB0ZWRBZElkPUEwOTA5NTAzM0dLRkE4Q1VFRk1ZUSZ3aWRnZXROYW1lPXNwX2F0ZiZhY3Rpb249Y2xpY2tSZWRpcmVjdCZkb05vdExvZ0NsaWNrPXRydWU="
+ret = crawler.crawl(test_url)
+json.dump(ret,sys.stdout)
