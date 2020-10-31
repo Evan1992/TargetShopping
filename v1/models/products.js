@@ -4,11 +4,12 @@ var passportLocalMongoose = require("passport-local-mongoose");
 // This is not defining a table like relational database
 // This is defining a pattern
 var ProductSchema = new mongoose.Schema({
-	name:  String,
-	img:   String,
-	price: Number,
-	link:  String
+	productTitle:  String,
+	productImg:   String,
+	productPrice: Number,
+	productLink:  String
 });
+
 
 // add in some methods to the user
 // ProductSchema.plugin(passportLocalMongoose);

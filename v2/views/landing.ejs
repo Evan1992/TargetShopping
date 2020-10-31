@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>TargetShopping</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" type="text/javascript" async></script>
+	</head>
+	
+	<body>
+		<nav class="navbar navbar-default">
+			<div class="container-fluid">
+				<div class= "navbar-header">
+					<a class="navbar-brand" href="/">TargetShopping</a>
+				</div>
+				<div class="collapse navbar-collapse">
+					<ul class="nav navbar-nav navbar-right">
+						<% if(!currentUser){ %>
+						<li><a href="/cart">Cart</a></li>
+						<li><a href="/login">Login</a></li>
+						<li><a href="/register">Register</a></li>
+						<% }else{%>
+						<li><a href="/cart/<%= currentUser._id%>">Cart</a></li>
+						<li><a href="/user/<%= currentUser._id%>">myAccount</a></li>
+						<li><a href="/logout">Logout</a></li>
+						<%}%>
+					</ul>	
+				</div>
+			</div>
+		</nav>
+
+		<div class="langding-header">
+			<h1>
+				Welcome to TargetShopping
+			</h1>
+		</div>
+
+		<div class="container">
+			<!-- the style defined below help make each grid adapts -->
+			<div class="row text-center" style="display:flex; flex-wrap:wrap;">
+				<div class='col-lg-12'>
+					<h3>
+						Add the link of your target product
+					</h3>
+					<% if(currentUser){ %>
+						<!-- if user has logged in -->
+						<form action="/addToCart/<%= currentUser._id %>" method="POST">
+							<input type="text" name="link" value="" placeholder="Product Link">
+							<button>Add</button>
+						</form>
+					
+					<% }else{%>
+						<!-- if user not logged in -->
+						<form action="/" method="POST">
+							<input type="text" name="link" placeholder="Product Link">
+							<button><a href="/login">Add</a></button>
+						</form>
+					<%}%>
+					
+					
+					<% products.forEach(function(product) { %>
+						<!-- each row have 3 products displayed -->
+						<!-- when the window shrink, each row has 2 products displayed -->
+						<div class="col-md-3 col-sm-6">
+							<!-- bootstrap class: thumbnail -->
+							<!-- help make a little card -->
+							<div class="thumbnail">
+								<img src="<%=product.img%>">
+								<div class="caption">
+									<h4><%=product.name  %></h4>
+									<h4><%=product.price %></h4>
+								</div>
+								<!-- if user logged in -->
+								<% if(currentUser){ %>
+									<form action='/user/<%= currentUser._id%>' method='POST'>
+										<input type='hidden' value = '<%=product._id%>' name='productInCart'>
+										<!-- <button><a href="/">Add to Cart</a></button> -->
+										<button>Add to Cart</button>
+									</form>
+								<% }else{%>
+									<!-- if user not logged in -->
+									<button><a href="/login">Add to Cart</a></button>
+								<%}%>
+							</div>
+						</div>
+					<% }) %>
+				</div>	
+			</div>
+		</div>
+	</body>	
+</html>
+
